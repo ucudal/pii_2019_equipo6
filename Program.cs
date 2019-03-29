@@ -1,7 +1,9 @@
 //Rodrigo Torres
+//Rodrigo Silva
+//Mariana Roso
+//Camilo Peña
 using System;
 using System.Linq;
-
 namespace Person
 {
     public class Person
