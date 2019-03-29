@@ -1,4 +1,5 @@
-// Camilo peña
+//Mariana Roso
+//Camilo Peña
 using System;
 using System.Linq;
 namespace Person
