@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Project
+namespace RazorPagesMovie.Pages.Projects
 {
     public class CreateModel : PageModel
     {
