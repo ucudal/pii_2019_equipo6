@@ -13,5 +13,14 @@ namespace RazorPagesMovie.Pages
         {
 
         }
+
+        public IActionResult OnPostRegister(string RegisterButton)
+        {
+            return RedirectToPage("Register");
+        }
+        public IActionResult OnPostLogin(string LoginButton)
+        {
+            return RedirectToPage("Login");
+        }
     }
 }
