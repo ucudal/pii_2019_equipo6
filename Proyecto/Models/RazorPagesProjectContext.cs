@@ -10,5 +10,6 @@ namespace RazorPagesMovie.Models
         }
 
         public DbSet<RazorPagesMovie.Models.Project> Project { get; set; }
+        public DbSet<RazorPagesMovie.Models.Admin> Admin { get; set; }
     }
 }
