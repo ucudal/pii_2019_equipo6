@@ -7,10 +7,30 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/RazorPagesMovie.csproj",
-                "/p:GenerateFullPaths=true"
+                "${workspaceFolder}/RazorPagesMovie.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/RazorPagesMovie.csproj"
+            ],
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/RazorPagesMovie.csproj"
+            ],
+            "problemMatcher": "$tsc"
         }
     ]
 }
