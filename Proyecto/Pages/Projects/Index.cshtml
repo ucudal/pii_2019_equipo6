@@ -14,16 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].Description)
+                @Html.DisplayNameFor(model => model.Project[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].RequiredSpecializations)
+                @Html.DisplayNameFor(model => model.Project[0].Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Project[0].AssignedTechnicians)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Project[0].PostulatedTechnicians)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].RequiredSpecialization)
             </th>
             <th></th>
         </tr>
@@ -32,16 +35,19 @@
 @foreach (var item in Model.Project) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequiredSpecializations)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AssignedTechnicians)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostulatedTechnicians)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredSpecialization)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

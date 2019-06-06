@@ -11,9 +11,9 @@ namespace RazorPagesMovie.Pages.Projects
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesProjectContext _context;
+        private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public DeleteModel(RazorPagesMovie.Models.RazorPagesProjectContext context)
+        public DeleteModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
