@@ -7,8 +7,8 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Migrations
 {
-    [DbContext(typeof(RazorPagesProjectContext))]
-    [Migration("20190528225237_InitialCreate")]
+    [DbContext(typeof(RazorPagesContext))]
+    [Migration("20190606182333_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,11 +24,17 @@ namespace RazorPagesMovie.Migrations
 
                     b.Property<string>("AssignedTechnicians");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(360);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.Property<string>("PostulatedTechnicians");
 
-                    b.Property<string>("RequiredSpecializations");
+                    b.Property<string>("RequiredSpecialization");
 
                     b.HasKey("ID");
 

@@ -12,10 +12,11 @@ namespace RazorPagesMovie.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Description = table.Column<string>(nullable: true),
-                    RequiredSpecializations = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Description = table.Column<string>(maxLength: 360, nullable: false),
                     AssignedTechnicians = table.Column<string>(nullable: true),
-                    PostulatedTechnicians = table.Column<string>(nullable: true)
+                    PostulatedTechnicians = table.Column<string>(nullable: true),
+                    RequiredSpecialization = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

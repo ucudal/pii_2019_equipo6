@@ -11,9 +11,9 @@ namespace RazorPagesMovie.Pages.Projects
 {
     public class CreateModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesProjectContext _context;
+        private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public CreateModel(RazorPagesMovie.Models.RazorPagesProjectContext context)
+        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }

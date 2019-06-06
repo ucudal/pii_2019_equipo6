@@ -12,9 +12,9 @@ namespace RazorPagesMovie.Pages.Projects
 {
     public class EditModel : PageModel
     {
-        private readonly RazorPagesMovie.Models.RazorPagesProjectContext _context;
+        private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public EditModel(RazorPagesMovie.Models.RazorPagesProjectContext context)
+        public EditModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
