@@ -40,6 +40,18 @@
                             {
                                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
                             }
+                        </li>                        
+                        <li class="nav-item">
+                            @if (User.IsInRole("Cliente"))
+                            {
+                                <a class="nav-link text-dark" asp-page="/Projects/CreateByClient">Nuevo Proyecto</a>
+                            }
+                        </li>                        
+                        <li class="nav-item">
+                            @if (User.IsInRole("Cliente"))
+                            {
+                                <a class="nav-link text-dark"  asp-page="/Projects/IndexForClient">Mis Proyectos</a>
+                            }
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
