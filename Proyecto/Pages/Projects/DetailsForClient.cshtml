@@ -1,0 +1,48 @@
+@page
+@model RazorPagesMovie.Pages.Projects.DetailsForClientModel
+
+@{
+    ViewData["Title"] = "DetailsForClient";
+}
+
+<h1>DetailsForClient</h1>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.AssignedTechnicians)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.AssignedTechnicians)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.PostulatedTechnicians)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.PostulatedTechnicians)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.RequiredSpecialization)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.RequiredSpecialization)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./IndexForClient">Back to List</a>
+</div>
