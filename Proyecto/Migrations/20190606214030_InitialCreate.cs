@@ -16,7 +16,8 @@ namespace RazorPagesMovie.Migrations
                     Description = table.Column<string>(maxLength: 360, nullable: false),
                     AssignedTechnicians = table.Column<string>(nullable: true),
                     PostulatedTechnicians = table.Column<string>(nullable: true),
-                    RequiredSpecialization = table.Column<string>(nullable: true)
+                    RequiredSpecialization = table.Column<string>(nullable: true),
+                    Creator = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

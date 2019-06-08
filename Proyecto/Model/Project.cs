@@ -22,8 +22,7 @@ namespace RazorPagesMovie.Models
         public string PostulatedTechnicians { get; set; }
 
         public string RequiredSpecialization { get; set; }
-        
 
-        
+        public string Creator {get;set;}
     }
 }
