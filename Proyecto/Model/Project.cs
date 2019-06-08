@@ -2,6 +2,9 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+/*Cumplimos con el principio de responsabilidad única ya que lo que tiene
+que ver con el look & field no las puedo tocar desde el controlador */
+
 namespace RazorPagesMovie.Models
 {
     public class Project
