@@ -22,6 +22,8 @@ namespace RazorPagesMovie.Migrations
 
                     b.Property<string>("AssignedTechnicians");
 
+                    b.Property<string>("Creator");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(360);

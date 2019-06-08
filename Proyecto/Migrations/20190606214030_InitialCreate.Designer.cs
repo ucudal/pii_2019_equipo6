@@ -8,7 +8,7 @@ using RazorPagesMovie.Models;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesContext))]
-    [Migration("20190606192608_InitialCreate")]
+    [Migration("20190606214030_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,8 @@ namespace RazorPagesMovie.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AssignedTechnicians");
+
+                    b.Property<string>("Creator");
 
                     b.Property<string>("Description")
                         .IsRequired()
