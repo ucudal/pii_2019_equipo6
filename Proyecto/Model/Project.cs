@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,5 +28,7 @@ namespace RazorPagesMovie.Models
         public string RequiredSpecialization { get; set; }
 
         public string Creator {get;set;}
+
+        public IList<Assignment> Assignments { get; set; }
     }
 }
