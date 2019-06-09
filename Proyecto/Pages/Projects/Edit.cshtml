@@ -51,6 +51,91 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-8">
+        @if (Model.Technicians != null)
+        {
+            <h4>Técnicos asignados</h4>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Birth Data</th>
+                    <th>Email</th>
+                </tr>
+
+                @foreach (var item in Model.Technicians)
+                {
+                    string technicianToDeleteID = item.ID.ToString();
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="DeleteTechnician"
+                                asp-route-id="@Model.Project.ID" asp-route-technicianToDeleteID="@technicianToDeleteID">
+                                <button class="btn btn-default">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+        @if (Model.AllTechnicians != null)
+        {
+            <h4>Otros Técnicos</h4>
+            <form>
+                <p>
+                    Name: <input type="text" asp-for="SearchString" />
+                    <input type="submit" value="Filter" />
+                </p>
+            </form>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Birth Data</th>
+                    <th>Email</th>
+                </tr>
+
+                @foreach (var item in Model.AllTechnicians)
+                {
+                    string technicianToAddID = item.ID.ToString();
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="AddTechnician"
+                                asp-route-id="@Model.Project.ID" asp-route-actorToAddID="@technicianToAddID">
+                                <button class="btn btn-default">Add</button>
+                            </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
