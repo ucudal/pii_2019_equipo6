@@ -29,22 +29,35 @@ namespace RazorPagesMovie.Migrations
                 name: "Technician",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     DOB = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: true)
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Technician", x => x.ID);
+                    table.PrimaryKey("PK_Technician", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Assignment",
                 columns: table => new
                 {
-                    TechnicianID = table.Column<int>(nullable: false),
+                    TechnicianID = table.Column<string>(nullable: false),
                     ProjectID = table.Column<int>(nullable: false),
                     ProjectID1 = table.Column<int>(nullable: false)
                 },
@@ -62,7 +75,7 @@ namespace RazorPagesMovie.Migrations
                         name: "FK_Assignment_Technician_TechnicianID",
                         column: x => x.TechnicianID,
                         principalTable: "Technician",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

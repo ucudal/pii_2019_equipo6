@@ -9,7 +9,7 @@ using RazorPagesMovie.Models;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesContext))]
-    [Migration("20190609051414_InitialCreate")]
+    [Migration("20190611223450_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace RazorPagesMovie.Migrations
 
             modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
                 {
-                    b.Property<int>("TechnicianID");
+                    b.Property<string>("TechnicianID");
 
                     b.Property<int>("ProjectID");
 
@@ -63,18 +63,44 @@ namespace RazorPagesMovie.Migrations
 
             modelBuilder.Entity("RazorPagesMovie.Models.Technician", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<DateTime>("DOB");
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60);
+                    b.Property<bool>("EmailConfirmed");
 
-                    b.HasKey("ID");
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("Role");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Technician");
                 });
