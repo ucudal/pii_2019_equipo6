@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace RazorPagesMovie.Models
 {
-    public class RazorPagesContext : DbContext
+    public class RazorPagesContext : IdentityDbContext<ApplicationUser>
     {
         public RazorPagesContext (DbContextOptions<RazorPagesContext> options)
             : base(options)
