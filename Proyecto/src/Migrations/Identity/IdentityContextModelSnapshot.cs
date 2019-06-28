@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RazorPagesMovie.Models;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace RazorPagesMovie.Migrations
+namespace RazorPagesMovie.Migrations.Identity
 {
-    [DbContext(typeof(RazorPagesContext))]
-    [Migration("20190619011815_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(IdentityContext))]
+    partial class IdentityContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,9 +139,6 @@ namespace RazorPagesMovie.Migrations
 
                     b.Property<DateTime>("DOB");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -186,58 +181,6 @@ namespace RazorPagesMovie.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
-                {
-                    b.Property<string>("TechnicianID");
-
-                    b.Property<int>("ProjectID");
-
-                    b.Property<int>("ProjectID1");
-
-                    b.HasKey("TechnicianID", "ProjectID");
-
-                    b.HasAlternateKey("ProjectID", "TechnicianID");
-
-                    b.HasIndex("ProjectID1");
-
-                    b.ToTable("Assignment");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Project", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AssignedTechnicians");
-
-                    b.Property<string>("Creator");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(360);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60);
-
-                    b.Property<string>("PostulatedTechnicians");
-
-                    b.Property<string>("RequiredSpecialization");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Project");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Technician", b =>
-                {
-                    b.HasBaseType("RazorPagesMovie.Areas.Identity.Data.ApplicationUser");
-
-                    b.HasDiscriminator().HasValue("Technician");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -282,19 +225,6 @@ namespace RazorPagesMovie.Migrations
                     b.HasOne("RazorPagesMovie.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
-                {
-                    b.HasOne("RazorPagesMovie.Models.Project", "Project")
-                        .WithMany("Assignments")
-                        .HasForeignKey("ProjectID1")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
-                        .WithMany("Assignments")
-                        .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
