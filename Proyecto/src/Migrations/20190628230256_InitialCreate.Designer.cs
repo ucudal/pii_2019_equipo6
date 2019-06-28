@@ -9,7 +9,7 @@ using RazorPagesMovie.Models;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesContext))]
-    [Migration("20190609051414_InitialCreate")]
+    [Migration("20190628230256_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
