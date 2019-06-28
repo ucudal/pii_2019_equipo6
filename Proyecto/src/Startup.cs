@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using RazorPagesMovie.Areas.Identity.Data;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie
 {
@@ -43,8 +44,7 @@ namespace RazorPagesMovie
             // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m ApplicationUser
             // -dc RazorPagesMovie.Areas.Identity.Data.RazorPagesMovieIdentityDbContext -udl -outDir Areas\Identity\Pages\ApplicationUsers
             // --referenceScriptLibraries
-            services.AddDbContext<IdentityContext>(options =>
-                 options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+            
 
             services.AddMvc(config =>
             {

@@ -90,12 +90,12 @@ namespace RazorPagesMovie.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-            public async Task<IActionResult> OnPostDeleteTechnicianAsync(int id, int TechnicianToDeleteID)
+            public async Task<IActionResult> OnPostDeleteTechnicianAsync(string id, string TechnicianToDeleteID)
         {
             Technician ProjectToUpdate = await _context.Technician
                 .Include(a => a.Assignments)
                     .ThenInclude(a => a.Technician)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             await TryUpdateModelAsync<Technician>(ProjectToUpdate);
 
@@ -122,7 +122,7 @@ namespace RazorPagesMovie.Pages.Projects
             }
             return Redirect(Request.Path + $"?id={id}");
         }
-        public async Task<IActionResult> OnPostAddTechnicianAsync(int? id, int? technicianToAddID)
+        public async Task<IActionResult> OnPostAddTechnicianAsync(string id, string technicianToAddID)
         {
             Project projectToUpdate = await _context.Project
                 .Include(a => a.Assignments)
@@ -134,11 +134,11 @@ namespace RazorPagesMovie.Pages.Projects
 
             if (technicianToAddID != null)
             {
-                Technician technicianToAdd = await _context.Technician.Where(a => a.ID == technicianToAddID).FirstOrDefaultAsync();
+                Technician technicianToAdd = await _context.Technician.Where(a => a.Id == technicianToAddID).FirstOrDefaultAsync();
                 if (technicianToAdd != null)
                 {
                     var assignmentToAdd = new Assignment() {
-                        TechnicianID = technicianToAddID.Value,
+                        TechnicianID = technicianToAddID,
                         Technician = technicianToAdd,
                         ProjectID = projectToUpdate.ID,
                         Project = projectToUpdate };
