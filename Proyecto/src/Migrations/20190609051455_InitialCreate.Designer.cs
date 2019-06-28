@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RazorPagesMovie.Models;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace RazorPagesMovie.Migrations
+namespace RazorPagesMovie.Migrations.Identity
 {
-    [DbContext(typeof(RazorPagesContext))]
-    partial class RazorPagesContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(IdentityContext))]
+    [Migration("20190609051455_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,12 +20,8 @@ namespace RazorPagesMovie.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-<<<<<<< HEAD
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
-=======
-                    b.Property<int>("TechnicianID");
->>>>>>> parent of b61b89d... Technician hereda de AppUser, modificaciones en archivos varios
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -133,26 +131,19 @@ namespace RazorPagesMovie.Migrations
 
             modelBuilder.Entity("RazorPagesMovie.Areas.Identity.Data.ApplicationUser", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-<<<<<<< HEAD
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-=======
->>>>>>> parent of b61b89d... Technician hereda de AppUser, modificaciones en archivos varios
                     b.Property<DateTime>("DOB");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
-<<<<<<< HEAD
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<bool>("LockoutEnabled");
@@ -181,13 +172,8 @@ namespace RazorPagesMovie.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
-=======
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60);
->>>>>>> parent of b61b89d... Technician hereda de AppUser, modificaciones en archivos varios
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -197,58 +183,6 @@ namespace RazorPagesMovie.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
-                {
-                    b.Property<string>("TechnicianID");
-
-                    b.Property<int>("ProjectID");
-
-                    b.Property<int>("ProjectID1");
-
-                    b.HasKey("TechnicianID", "ProjectID");
-
-                    b.HasAlternateKey("ProjectID", "TechnicianID");
-
-                    b.HasIndex("ProjectID1");
-
-                    b.ToTable("Assignment");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Project", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AssignedTechnicians");
-
-                    b.Property<string>("Creator");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(360);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60);
-
-                    b.Property<string>("PostulatedTechnicians");
-
-                    b.Property<string>("RequiredSpecialization");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Project");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Technician", b =>
-                {
-                    b.HasBaseType("RazorPagesMovie.Areas.Identity.Data.ApplicationUser");
-
-                    b.HasDiscriminator().HasValue("Technician");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -293,19 +227,6 @@ namespace RazorPagesMovie.Migrations
                     b.HasOne("RazorPagesMovie.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
-                {
-                    b.HasOne("RazorPagesMovie.Models.Project", "Project")
-                        .WithMany("Assignments")
-                        .HasForeignKey("ProjectID1")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
-                        .WithMany("Assignments")
-                        .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

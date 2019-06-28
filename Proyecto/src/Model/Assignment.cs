@@ -8,7 +8,7 @@ namespace RazorPagesMovie.Models
     public class Assignment
     {
         [Key]
-        public string TechnicianID { get; set; }
+        public int TechnicianID { get; set; }
 
         [Key]
         public int ProjectID { get; set; }

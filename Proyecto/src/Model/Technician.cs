@@ -2,11 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
-using RazorPagesMovie.Areas.Identity.Data;
 
 namespace RazorPagesMovie.Models
 {
-    public class Technician : ApplicationUser
+    public class Technician : Person
     {
         //Conocer Especialización
 

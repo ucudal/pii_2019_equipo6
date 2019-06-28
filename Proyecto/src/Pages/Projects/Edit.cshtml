@@ -66,7 +66,7 @@
 
                 @foreach (var item in Model.Technicians)
                 {
-                    string technicianToDeleteID = item.Id;
+                    string technicianToDeleteID = item.ID.ToString();
                     <tr>
                         <td>
                             <form method="post" asp-page-handler="DeleteTechnician"
@@ -112,7 +112,7 @@
 
                 @foreach (var item in Model.AllTechnicians)
                 {
-                    string technicianToAddID = item.Id;
+                    string technicianToAddID = item.ID.ToString();
                     <tr>
                         <td>
                             <form method="post" asp-page-handler="AddTechnician"
