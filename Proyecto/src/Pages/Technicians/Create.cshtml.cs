@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Projects
+namespace RazorPagesMovie.Pages.Technicians
 {
-    public class CreateByClientModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public CreateByClientModel(RazorPagesMovie.Models.RazorPagesContext context)
+        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace RazorPagesMovie.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,10 +33,10 @@ namespace RazorPagesMovie.Pages.Projects
                 return Page();
             }
 
-            _context.Project.Add(Project);
+            _context.Technician.Add(Technician);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./IndexForClient");
+            return RedirectToPage("./Index");
         }
     }
 }

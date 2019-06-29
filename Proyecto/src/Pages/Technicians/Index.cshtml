@@ -1,5 +1,5 @@
 @page
-@model RazorPagesMovie.Pages.Projects.IndexModel
+@model RazorPagesMovie.Pages.Technicians.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,34 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].Name)
+                @Html.DisplayNameFor(model => model.Technician[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].Description)
+                @Html.DisplayNameFor(model => model.Technician[0].DOB)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].RequiredSpecialization)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Project[0].Creator)
+                @Html.DisplayNameFor(model => model.Technician[0].Email)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Project) {
+@foreach (var item in Model.Technician) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.DOB)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequiredSpecialization)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Creator)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

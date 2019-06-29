@@ -7,22 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Projects
+namespace RazorPagesMovie.Pages.Technicians
 {
-    public class IndexForClientModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public IndexForClientModel(RazorPagesMovie.Models.RazorPagesContext context)
+        public IndexModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
 
-        public IList<Project> Project { get;set; }
+        public IList<Technician> Technician { get;set; }
 
         public async Task OnGetAsync()
         {
-            Project = await _context.Project.ToListAsync();
+            Technician = await _context.Technician.ToListAsync();
         }
     }
 }
