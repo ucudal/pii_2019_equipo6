@@ -8,8 +8,11 @@ namespace RazorPagesMovie.Models
     public class Specialization
     {
         public int ID { get; set; }
-        public string Name;
-        public string Salary;
+        public string Name {get; set;}
+
+        public int Salary {get;set;}
+
+        public IList<AssignmentSpecialization> AssignmentSpecializations { get; set; }
 
     }
 }

@@ -13,6 +13,16 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Technician.hours" class="control-label"></label>
+                <input asp-for="Technician.hours" class="form-control" />
+                <span asp-validation-for="Technician.hours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Technician.score" class="control-label"></label>
+                <input asp-for="Technician.score" class="form-control" />
+                <span asp-validation-for="Technician.score" class="text-danger"></span>
+            </div>
             <input type="hidden" asp-for="Technician.ID" />
             <div class="form-group">
                 <label asp-for="Technician.Name" class="control-label"></label>
@@ -33,6 +43,82 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        @if (Model.Specializations != null)
+        {
+            <h4>Especializaciones asignados</h4>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                </tr>
+
+                @foreach (var item in Model.Specializations)
+                {
+                    string specializationToDeleteID = item.ID.ToString();
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="DeleteSpecialization"
+                                asp-route-id="@Model.Technician.ID" asp-route-specializationToDeleteID="@specializationToDeleteID">
+                                <button class="btn btn-default">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+        @if (Model.AllSpecializations != null)
+        {
+            <h4>Otras Especializaciones</h4>
+            <form>
+                <p>
+                    Name: <input type="text" asp-for="SearchString" />
+                    <input type="submit" value="Filter" />
+                </p>
+            </form>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                </tr>
+
+                @foreach (var item in Model.AllSpecializations)
+                {
+                    string specializationToAddID = item.ID.ToString();
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="AddSpecialization"
+                                asp-route-id="@Model.Technician.ID" asp-route-specializationToAddID="@specializationToAddID">
+                                <button class="btn btn-default">Add</button>
+                            </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
     </div>
 </div>
 

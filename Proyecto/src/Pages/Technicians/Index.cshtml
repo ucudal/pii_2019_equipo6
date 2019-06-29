@@ -22,6 +22,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Technician[0].Email)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician[0].hours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician[0].score)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +42,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

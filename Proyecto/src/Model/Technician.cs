@@ -11,9 +11,10 @@ namespace RazorPagesMovie.Models
 
         //Conocer Nivel (Experto/Básico)
 
-        public float hours;
+        public float hours { get; set; }
 
-        public float score;
+        public float score { get; set; }
         public List<Assignment> Assignments { get; set; }
+        public IList<AssignmentSpecialization> AssignmentSpecializations { get; set; }
     }
 }
