@@ -33,12 +33,27 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("Assignment");
                 });
 
+            modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
+                {
+                    b.Property<int>("SpecializationID");
+
+                    b.Property<int>("TechnicianID");
+
+                    b.Property<int>("SpecializationID1");
+
+                    b.HasKey("SpecializationID", "TechnicianID");
+
+                    b.HasIndex("SpecializationID1");
+
+                    b.HasIndex("TechnicianID");
+
+                    b.ToTable("AssignmentSpecialization");
+                });
+
             modelBuilder.Entity("RazorPagesMovie.Models.Project", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AssignedTechnicians");
 
                     b.Property<string>("Creator");
 
@@ -50,13 +65,25 @@ namespace RazorPagesMovie.Migrations
                         .IsRequired()
                         .HasMaxLength(60);
 
-                    b.Property<string>("PostulatedTechnicians");
-
                     b.Property<string>("RequiredSpecialization");
 
                     b.HasKey("ID");
 
                     b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Specialization", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Salary");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Specialization");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Technician", b =>
@@ -72,6 +99,10 @@ namespace RazorPagesMovie.Migrations
                         .IsRequired()
                         .HasMaxLength(60);
 
+                    b.Property<float>("hours");
+
+                    b.Property<float>("score");
+
                     b.HasKey("ID");
 
                     b.ToTable("Technician");
@@ -86,6 +117,19 @@ namespace RazorPagesMovie.Migrations
 
                     b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
                         .WithMany("Assignments")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
+                {
+                    b.HasOne("RazorPagesMovie.Models.Specialization", "Specialization")
+                        .WithMany()
+                        .HasForeignKey("SpecializationID1")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
+                        .WithMany()
                         .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

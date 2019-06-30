@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Projects
+namespace RazorPagesMovie.Pages.Technicians
 {
     public class EditModel : PageModel
     {
@@ -20,12 +20,13 @@ namespace RazorPagesMovie.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
-        public IEnumerable<Technician> Technicians {get;set;}
-        public IEnumerable<Technician> AllTechnicians { get; set; }
+        public Technician Technician { get; set; }
+        public IEnumerable<Specialization> Specializations {get;set;}
+        public IEnumerable<Specialization> AllSpecializations { get; set; }
         
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -33,19 +34,19 @@ namespace RazorPagesMovie.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
+            Technician = await _context.Technician
             .Where(m => m.ID == id)
-            .Include(c =>c.Assignments)
-            .ThenInclude(a => a.Technician)
+            .Include(c =>c.AssignmentSpecializations)
+            .ThenInclude(a => a.Specialization)
             .FirstOrDefaultAsync();
 
-            if (Project == null)
+            if (Technician == null)
             {
                 return NotFound();
             }
             // Populate the list of actors in the viewmodel with the actors of the movie.
-            this.Technicians = Project.Assignments
-                .Select(a => a.Technician);
+            this.Specializations = Technician.AssignmentSpecializations
+                .Select(a => a.Specialization);
 
             string nameFilter = "";
             if (this.SearchString != null)
@@ -55,8 +56,8 @@ namespace RazorPagesMovie.Pages.Projects
 
             // Populate the list of all other actors with all actors not included in the movie's actors and
             // included in the search filter.
-            this.AllTechnicians = await _context.Technician
-                .Where(a =>!Technicians.Contains(a))
+            this.AllSpecializations = await _context.Specialization
+                .Where(a =>!Specializations.Contains(a))
                 .Where(a => !string.IsNullOrEmpty(nameFilter) ? a.Name.ToUpper().Contains(nameFilter) : true)
                 .ToListAsync();
             return Page();
@@ -69,7 +70,7 @@ namespace RazorPagesMovie.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(Technician).State = EntityState.Modified;
 
             try
             {
@@ -77,7 +78,7 @@ namespace RazorPagesMovie.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ID))
+                if (!TechnicianExists(Technician.ID))
                 {
                     return NotFound();
                 }
@@ -89,20 +90,19 @@ namespace RazorPagesMovie.Pages.Projects
 
             return RedirectToPage("./Index");
         }
-
-            public async Task<IActionResult> OnPostDeleteTechnicianAsync(int id, int TechnicianToDeleteID)
+            public async Task<IActionResult> OnPostDeleteSpecializationAsync(int id, int SpecializationToDeleteID)
         {
-            Technician ProjectToUpdate = await _context.Technician
-                .Include(a => a.Assignments)
-                    .ThenInclude(a => a.Technician)
+            Specialization TechnicianToUpdate = await _context.Specialization
+                .Include(a => a.AssignmentSpecializations)
+                    .ThenInclude(a => a.Specialization)
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            await TryUpdateModelAsync<Technician>(ProjectToUpdate);
+            await TryUpdateModelAsync<Specialization>(TechnicianToUpdate);
 
-            var technicianToDelete = ProjectToUpdate.Assignments.Where(a => a.TechnicianID == TechnicianToDeleteID).FirstOrDefault();
-            if (technicianToDelete != null)
+            var specializationToDelete = TechnicianToUpdate.AssignmentSpecializations.Where(a => a.SpecializationID == SpecializationToDeleteID).FirstOrDefault();
+            if (specializationToDelete != null)
             {
-                ProjectToUpdate.Assignments.Remove(technicianToDelete);
+                TechnicianToUpdate.AssignmentSpecializations.Remove(specializationToDelete);
             }
 
             try
@@ -111,7 +111,7 @@ namespace RazorPagesMovie.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ID))
+                if (!TechnicianExists(Technician.ID))
                 {
                     return NotFound();
                 }
@@ -122,27 +122,27 @@ namespace RazorPagesMovie.Pages.Projects
             }
             return Redirect(Request.Path + $"?id={id}");
         }
-        public async Task<IActionResult> OnPostAddTechnicianAsync(int? id, int? technicianToAddID)
+        public async Task<IActionResult> OnPostAddSpecializationAsync(int? id, int? specializationToAddID)
         {
-            Project projectToUpdate = await _context.Project
-                .Include(a => a.Assignments)
-                    .ThenInclude(a => a.Technician)
-                .FirstOrDefaultAsync(m => m.ID == Project.ID);
+            Technician technicianToUpdate = await _context.Technician
+                .Include(a => a.AssignmentSpecializations)
+                    .ThenInclude(a => a.Specialization)
+                .FirstOrDefaultAsync(m => m.ID == Technician.ID);
 
-            await TryUpdateModelAsync<Project>(projectToUpdate);
+            await TryUpdateModelAsync<Technician>(technicianToUpdate);
 
 
-            if (technicianToAddID != null)
+            if (specializationToAddID != null)
             {
-                Technician technicianToAdd = await _context.Technician.Where(a => a.ID == technicianToAddID).FirstOrDefaultAsync();
-                if (technicianToAdd != null)
+                Specialization specializationToAdd = await _context.Specialization.Where(a => a.ID == specializationToAddID).FirstOrDefaultAsync();
+                if (specializationToAdd != null)
                 {
-                    var assignmentToAdd = new Assignment() {
-                        TechnicianID = technicianToAddID.Value,
-                        Technician = technicianToAdd,
-                        ProjectID = projectToUpdate.ID,
-                        Project = projectToUpdate };
-                    projectToUpdate.Assignments.Add(assignmentToAdd);
+                    var assignmentSpecializationToAdd = new AssignmentSpecialization() {
+                        SpecializationID = specializationToAddID.Value,
+                        Specialization = specializationToAdd,
+                        TechnicianID = technicianToUpdate.ID,
+                        Technician = technicianToUpdate };
+                    technicianToUpdate.AssignmentSpecializations.Add(assignmentSpecializationToAdd);
                 }
             }
 
@@ -152,7 +152,7 @@ namespace RazorPagesMovie.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ID))
+                if (!TechnicianExists(Technician.ID))
                 {
                     return NotFound();
                 }
@@ -164,9 +164,10 @@ namespace RazorPagesMovie.Pages.Projects
 
             return Redirect(Request.Path + $"?id={id}");
         }
-        private bool ProjectExists(int id)
+
+        private bool TechnicianExists(int id)
         {
-            return _context.Project.Any(e => e.ID == id);
+            return _context.Technician.Any(e => e.ID == id);
         }
     }
 }
