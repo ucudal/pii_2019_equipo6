@@ -9,50 +9,42 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Projects
 {
-    public class DeleteModel : PageModel
+    public class FinishModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public DeleteModel(RazorPagesMovie.Models.RazorPagesContext context)
+        public FinishModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
-
+        public IList<Project> Projects { get;set; }
         [BindProperty]
         public Project Project { get; set; }
-
+        public IEnumerable<Technician> Technicians {get;set;}
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            
+            Projects = await _context.Project.ToListAsync();
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            Project = await _context.Project.FirstOrDefaultAsync(m => m.ID == id);
+            Project = await _context.Project
+            .Where(m => m.ID == id)
+            .Include(c =>c.Assignments)
+            .ThenInclude(a => a.Technician)
+            .FirstOrDefaultAsync();
+
+            this.Technicians = Project.Assignments
+            .Select(a => a.Technician);
 
             if (Project == null)
             {
                 return NotFound();
             }
             return Page();
-        }
-        
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Project = await _context.Project.FindAsync(id);
-
-            if (Project != null)
-            {
-                _context.Project.Remove(Project);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }

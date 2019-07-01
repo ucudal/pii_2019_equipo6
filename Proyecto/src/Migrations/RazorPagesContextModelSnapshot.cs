@@ -124,12 +124,12 @@ namespace RazorPagesMovie.Migrations
             modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
                 {
                     b.HasOne("RazorPagesMovie.Models.Specialization", "Specialization")
-                        .WithMany()
+                        .WithMany("AssignmentSpecializations")
                         .HasForeignKey("SpecializationID1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
-                        .WithMany()
+                        .WithMany("AssignmentSpecializations")
                         .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

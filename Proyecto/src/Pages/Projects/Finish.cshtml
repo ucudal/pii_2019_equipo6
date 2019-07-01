@@ -1,0 +1,34 @@
+﻿@page
+@model RazorPagesMovie.Pages.Projects.FinishModel
+@{
+    ViewData["Title"] = "Index";
+}
+@foreach (var item in Model.Technicians)
+{
+    <table class="table">
+        <thead>
+            <h3>
+                @Html.DisplayFor(modelItem => item.Name):
+            </h3>
+            <tr>
+                <th>
+                    Horas trabajadas
+                </th>
+                <th>
+                    Calificación (Del 1 al 5)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="number" step="0.1" class="form-control"/>
+                </td>
+                <td>
+                    <input type="number" step="0.1" class="form-control"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

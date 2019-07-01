@@ -9,7 +9,7 @@ using RazorPagesMovie.Models;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesContext))]
-    [Migration("20190629212734_InitialCreate")]
+    [Migration("20190701013035_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,12 +126,12 @@ namespace RazorPagesMovie.Migrations
             modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
                 {
                     b.HasOne("RazorPagesMovie.Models.Specialization", "Specialization")
-                        .WithMany()
+                        .WithMany("AssignmentSpecializations")
                         .HasForeignKey("SpecializationID1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
-                        .WithMany()
+                        .WithMany("AssignmentSpecializations")
                         .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

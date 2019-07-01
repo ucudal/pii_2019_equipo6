@@ -7,13 +7,12 @@ namespace RazorPagesMovie.Models
 {
     public class Technician : Person
     {
-        //Conocer Especialización
-
-        //Conocer Nivel (Experto/Básico)
-
         public float hours { get; set; }
 
         public float score { get; set; }
+
+        [NotMapped]
+        public List<float> lastScores {get;set;}
         public List<Assignment> Assignments { get; set; }
         public IList<AssignmentSpecialization> AssignmentSpecializations { get; set; }
     }

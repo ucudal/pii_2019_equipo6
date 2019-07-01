@@ -44,9 +44,10 @@
                 @Html.DisplayFor(modelItem => item.Creator)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Eliminar</a> |
+                <a asp-page="./Finish" asp-route-id="@item.ID">Finalizar</a>                
             </td>
         </tr>
 }
