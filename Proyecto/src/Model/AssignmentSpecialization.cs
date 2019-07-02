@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace RazorPagesMovie.Models
 {
+
+/*Esta Clase tendrá las asignaciones a Technician de las Specialization, Specialization y Technician tendrán
+una lista de AssignmentSpecialization. Donde los tecnicos tendrán su especialización y con ella su salario. */ 
     public class AssignmentSpecialization
     {
         [Key]

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace RazorPagesMovie.Models
 {
+    //La clase Specialization nos va a permitir asignar un salario y con él calcular el presupuesto de cada proyecto.
     public class Specialization
     {
         public int ID { get; set; }

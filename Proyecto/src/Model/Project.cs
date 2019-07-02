@@ -8,6 +8,8 @@ que ver con el look & field no las puedo tocar desde el controlador */
 
 namespace RazorPagesMovie.Models
 {
+
+    //Creo la clase Project que será responsable de todo lo inherente a los proyectos propuestos por los clientes.
     public class Project
     {
         public int ID { get; set; }

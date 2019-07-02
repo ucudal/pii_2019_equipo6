@@ -9,6 +9,9 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Projects
 {
+
+/*FinishModel hereda de PageModel que es una clase que tiene propiedades propias de RazorPages que permiten
+trabajar con las solicitudes http y tiene métodos que permiten especificar el tipo de respuesta */ 
     public class FinishModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;

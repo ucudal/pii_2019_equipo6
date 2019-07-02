@@ -18,7 +18,8 @@ namespace RazorPagesMovie
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
+                
+// Se arroja una excepción si no puede iniciar los servicios con la Base de datos 
                 try
                 {
                     var context=services.

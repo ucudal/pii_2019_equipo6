@@ -43,7 +43,7 @@ namespace RazorPagesMovie.Pages.Projects
             {
                 return NotFound();
             }
-            // Populate the list of actors in the viewmodel with the actors of the movie.
+            
             this.Technicians = Project.Assignments
                 .Select(a => a.Technician);
 
@@ -53,8 +53,8 @@ namespace RazorPagesMovie.Pages.Projects
                 nameFilter = this.SearchString.ToUpper();
             }
 
-            // Populate the list of all other actors with all actors not included in the movie's actors and
-            // included in the search filter.
+//Se incluyen los Technicians no incluidos 
+//Se agrega filtro por Technicians
             this.AllTechnicians = await _context.Technician
                 .Where(a =>!Technicians.Contains(a))
                 .Where(a => !string.IsNullOrEmpty(nameFilter) ? a.Name.ToUpper().Contains(nameFilter) : true)
