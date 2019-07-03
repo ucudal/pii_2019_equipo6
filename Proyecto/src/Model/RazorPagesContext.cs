@@ -11,6 +11,7 @@ namespace RazorPagesMovie.Models
         }
 
         public DbSet<RazorPagesMovie.Models.Project> Project { get; set; }
+        public DbSet<RazorPagesMovie.Models.Project> FinishedProject {get;set;}
         public DbSet<RazorPagesMovie.Models.Technician> Technician { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<AssignmentSpecialization> AssignmentSpecializations {get;set;}

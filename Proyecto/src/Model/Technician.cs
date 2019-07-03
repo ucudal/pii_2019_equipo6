@@ -13,7 +13,12 @@ namespace RazorPagesMovie.Models
 
         public float hours { get; set; }
 
+        [RegularExpression(@"^[1-5]*$")]
         public float score { get; set; }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         public List<Assignment> Assignments { get; set; }
         public IList<AssignmentSpecialization> AssignmentSpecializations { get; set; }
     }
