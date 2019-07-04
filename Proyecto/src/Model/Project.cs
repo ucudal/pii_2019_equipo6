@@ -30,6 +30,8 @@ namespace RazorPagesMovie.Models
         [Display(Name = "Cliente")]
         public string Creator {get;set;}
 
+        public bool Finished {get;set;}
+
         public IList<Assignment> Assignments { get; set; }
     }
 }

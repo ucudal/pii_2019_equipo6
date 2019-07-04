@@ -102,8 +102,7 @@ trabajar con las solicitudes http y tiene métodos que permiten especificar el t
 
             if (Project != null)
             {
-                _context.FinishedProject.Add(Project);
-                _context.Project.Remove(Project);
+                Project.Finished = true;
                 await _context.SaveChangesAsync();
             }
 

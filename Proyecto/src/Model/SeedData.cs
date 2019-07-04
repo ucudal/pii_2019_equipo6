@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 
 
 
@@ -40,13 +39,15 @@ namespace RazorPagesMovie.Models
                 {
                     Name = "Prueba 1",
                     Description = "its a test",
-                    RequiredSpecialization = "Camarografo y Microfonista"
+                    RequiredSpecialization = "Camarografo y Microfonista",
+                    Finished = false,
                 },
                 new Project
                 {
                     Name = "Prueba2",
                     Description = "its another test",
-                    RequiredSpecialization = "Microfonista"
+                    RequiredSpecialization = "Microfonista",
+                    Finished = false,
                 }
             };
         }
