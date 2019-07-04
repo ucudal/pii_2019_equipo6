@@ -32,21 +32,16 @@
             </tr>
             <tr>
                 <td>
-                    <input type="hidden" asp-for="Technicians.ElementAt(0).ID" />
+                    <input type="hidden" asp-for="Technicians.ElementAt(i).ID" />
                 </td>
                 <td>
-                    <input type="submit" asp-page-handler="Save" asp-route-id="@Model.Project.ID" asp-route-technicianToUpdateID="technicianToUpdateID" id="@i" value="Guardar">
+                    <input type="submit" asp-page-handler="Save" asp-route-id="@Model.Project.ID" asp-route-technicianToUpdateID="@Model.Technicians.ElementAt(i).ID" id="@i" value="Guardar">
                 </td>
             </tr>
         </tbody>
     </table>
     </form>
-    <script>
-        $('#@i').on('click', function(){
-        alert('Button clicked. Disabling...');
-        $('#@i').attr("disabled", true);
-            });
-    </script>
+
 
 
 }

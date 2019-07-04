@@ -65,13 +65,18 @@ namespace RazorPagesMovie.Pages.Projects
             Technician ProjectToUpdate = await _context.Technician
                 .Include(a => a.Assignments)
                     .ThenInclude(a => a.Technician)
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID == TechnicianToUpdateID);
 
             await TryUpdateModelAsync<Technician>(ProjectToUpdate);
+
+                //Por alguna razón el framework en algunos casos modifica el id del técnico a 1 en el
+                //TryUpdateModelAsync haciendo que crashee cuando va a gurdar los cambios, la siguiente
+                //linea puede parecer fuera de lugar pero es la solución que encontré.
+                ProjectToUpdate.ID = TechnicianToUpdateID;
             
                 ProjectToUpdate.hours = ProjectToUpdate.hours + param1;
     
-                if (ProjectToUpdate.score != 123456789)
+                if (ProjectToUpdate.score != 0)
                 {
                     ProjectToUpdate.score = (ProjectToUpdate.score + param2)/2;
                 }
