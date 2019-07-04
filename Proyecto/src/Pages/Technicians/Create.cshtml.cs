@@ -32,7 +32,8 @@ namespace RazorPagesMovie.Pages.Technicians
             {
                 return Page();
             }
-
+            Technician.hours=0;
+            Technician.score=0;
             _context.Technician.Add(Technician);
             await _context.SaveChangesAsync();
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 
+
 namespace RazorPagesMovie.Models
 {
     public static class SeedData
@@ -39,7 +40,7 @@ namespace RazorPagesMovie.Models
                 {
                     Name = "Prueba 1",
                     Description = "its a test",
-                    RequiredSpecialization = "Tecnico"
+                    RequiredSpecialization = "Camarografo y Microfonista"
                 },
                 new Project
                 {
@@ -66,13 +67,23 @@ namespace RazorPagesMovie.Models
             {
                 new Specialization
                 {
-                    Name = "Técnico",
-                    Salary = 300,
+                    Name = "Camarografo básico",
+                    Salary = 30,
                 },
                 new Specialization
                 {
-                    Name = "Microfonista",
-                    Salary = 200
+                    Name = "Microfonista básico",
+                    Salary = 20,
+                },
+                    new Specialization
+                {
+                    Name = "Aguatero básico",
+                    Salary = 5,
+                },
+                    new Specialization
+                {
+                    Name = "Camarografo avanzado",
+                    Salary = 40,
                 }
             };
         }

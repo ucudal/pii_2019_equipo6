@@ -21,9 +21,10 @@ namespace RazorPagesMovie.Pages.Projects
             _userManager = userManager;
         }  
 
-        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context)
+        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context, UserManager<Areas.Identity.Data.ApplicationUser> userManager)
         {
             _context = context;
+            
         }
 
         public IActionResult OnGet()
