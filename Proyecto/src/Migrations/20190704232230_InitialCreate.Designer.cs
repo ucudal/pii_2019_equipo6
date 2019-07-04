@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RazorPagesMovie.Areas.Identity.Data;
+using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Migrations.Identity
+namespace RazorPagesMovie.Migrations
 {
-    [DbContext(typeof(IdentityContext))]
-    [Migration("20190704222730_InitialCreate")]
+    [DbContext(typeof(RazorPagesContext))]
+    [Migration("20190704232230_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,6 +185,100 @@ namespace RazorPagesMovie.Migrations.Identity
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
+                {
+                    b.Property<int>("TechnicianID");
+
+                    b.Property<int>("ProjectID");
+
+                    b.Property<int>("ProjectID1");
+
+                    b.HasKey("TechnicianID", "ProjectID");
+
+                    b.HasAlternateKey("ProjectID", "TechnicianID");
+
+                    b.HasIndex("ProjectID1");
+
+                    b.ToTable("Assignment");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
+                {
+                    b.Property<int>("SpecializationID");
+
+                    b.Property<int>("TechnicianID");
+
+                    b.Property<int>("SpecializationID1");
+
+                    b.HasKey("SpecializationID", "TechnicianID");
+
+                    b.HasIndex("SpecializationID1");
+
+                    b.HasIndex("TechnicianID");
+
+                    b.ToTable("AssignmentSpecialization");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Project", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Creator");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(360);
+
+                    b.Property<bool>("Finished");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<string>("RequiredSpecialization");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Specialization", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Salary");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Specialization");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Technician", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DOB");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<float>("hours");
+
+                    b.Property<float>("score");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Technician");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -227,6 +321,32 @@ namespace RazorPagesMovie.Migrations.Identity
                     b.HasOne("RazorPagesMovie.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Assignment", b =>
+                {
+                    b.HasOne("RazorPagesMovie.Models.Project", "Project")
+                        .WithMany("Assignments")
+                        .HasForeignKey("ProjectID1")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
+                        .WithMany("Assignments")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.AssignmentSpecialization", b =>
+                {
+                    b.HasOne("RazorPagesMovie.Models.Specialization", "Specialization")
+                        .WithMany("AssignmentSpecializations")
+                        .HasForeignKey("SpecializationID1")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RazorPagesMovie.Models.Technician", "Technician")
+                        .WithMany("AssignmentSpecializations")
+                        .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

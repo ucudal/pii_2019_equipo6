@@ -13,15 +13,8 @@ namespace RazorPagesMovie.Pages.Projects
     public class CreateModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
-        private readonly UserManager<Areas.Identity.Data.ApplicationUser> _userManager; 
 
-        public CreateModel(
-            UserManager<Areas.Identity.Data.ApplicationUser> userManager)
-        {
-            _userManager = userManager;
-        }  
-
-        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context, UserManager<Areas.Identity.Data.ApplicationUser> userManager)
+        public CreateModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
             
@@ -43,12 +36,6 @@ namespace RazorPagesMovie.Pages.Projects
                 return Page();
             }
             
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-            Project.Creator = user.Name;
             _context.Project.Add(Project);
             await _context.SaveChangesAsync();
 
