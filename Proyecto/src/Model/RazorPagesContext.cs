@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Models
 {
-    public class RazorPagesContext : DbContext
+    public class RazorPagesContext : IdentityDbContext<ApplicationUser>
     {
         public RazorPagesContext (DbContextOptions<RazorPagesContext> options)
             : base(options)

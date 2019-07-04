@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using RazorPagesMovie.Areas.Identity.Data;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie
 {

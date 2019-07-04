@@ -7,15 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Areas.Identity.Pages.Users
 {
     [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesMovie.Areas.Identity.Data.IdentityContext _context;
+        private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public DeleteModel(RazorPagesMovie.Areas.Identity.Data.IdentityContext context)
+        public DeleteModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
