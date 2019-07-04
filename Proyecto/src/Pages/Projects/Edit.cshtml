@@ -25,16 +25,6 @@
                 <span asp-validation-for="Project.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Project.AssignedTechnicians" class="control-label"></label>
-                <input asp-for="Project.AssignedTechnicians" class="form-control" />
-                <span asp-validation-for="Project.AssignedTechnicians" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.PostulatedTechnicians" class="control-label"></label>
-                <input asp-for="Project.PostulatedTechnicians" class="form-control" />
-                <span asp-validation-for="Project.PostulatedTechnicians" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Project.RequiredSpecialization" class="control-label"></label>
                 <input asp-for="Project.RequiredSpecialization" class="form-control" />
                 <span asp-validation-for="Project.RequiredSpecialization" class="text-danger"></span>
@@ -116,7 +106,7 @@
                     <tr>
                         <td>
                             <form method="post" asp-page-handler="AddTechnician"
-                                asp-route-id="@Model.Project.ID" asp-route-actorToAddID="@technicianToAddID">
+                                asp-route-id="@Model.Project.ID" asp-route-technicianToAddID="@technicianToAddID">
                                 <button class="btn btn-default">Add</button>
                             </form>
                         </td>

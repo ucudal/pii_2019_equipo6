@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Projects
+namespace RazorPagesMovie.Pages.Specializations
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace RazorPagesMovie.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public Specialization Specialization { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,15 +28,15 @@ namespace RazorPagesMovie.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project.FirstOrDefaultAsync(m => m.ID == id);
+            Specialization = await _context.Specialization.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Project == null)
+            if (Specialization == null)
             {
                 return NotFound();
             }
             return Page();
         }
-        
+
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
@@ -44,11 +44,11 @@ namespace RazorPagesMovie.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project.FindAsync(id);
+            Specialization = await _context.Specialization.FindAsync(id);
 
-            if (Project != null)
+            if (Specialization != null)
             {
-                _context.Project.Remove(Project);
+                _context.Specialization.Remove(Specialization);
                 await _context.SaveChangesAsync();
             }
 

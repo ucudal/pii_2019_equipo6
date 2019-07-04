@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Projects
+namespace RazorPagesMovie.Pages.Technicians
 {
-    public class DetailsForClientModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
 
-        public DetailsForClientModel(RazorPagesMovie.Models.RazorPagesContext context)
+        public DetailsModel(RazorPagesMovie.Models.RazorPagesContext context)
         {
             _context = context;
         }
 
-        public Project Project { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace RazorPagesMovie.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project.FirstOrDefaultAsync(m => m.ID == id);
+            Technician = await _context.Technician.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Project == null)
+            if (Technician == null)
             {
                 return NotFound();
             }

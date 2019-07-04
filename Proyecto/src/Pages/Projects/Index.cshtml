@@ -20,12 +20,6 @@
                 @Html.DisplayNameFor(model => model.Project[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Project[0].AssignedTechnicians)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Project[0].PostulatedTechnicians)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Project[0].RequiredSpecialization)
             </th>
             <th>
@@ -44,21 +38,16 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AssignedTechnicians)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostulatedTechnicians)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.RequiredSpecialization)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Creator)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Eliminar</a> |
+                <a asp-page="./Finish" asp-route-id="@item.ID">Finalizar</a>                
             </td>
         </tr>
 }

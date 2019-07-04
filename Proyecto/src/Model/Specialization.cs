@@ -5,15 +5,14 @@ using System.Collections.Generic;
 
 namespace RazorPagesMovie.Models
 {
-    public class Technician : Person
+    public class Specialization
     {
-        public float hours { get; set; }
+        public int ID { get; set; }
+        public string Name {get; set;}
 
-        public float score { get; set; }
+        public int Salary {get;set;}
 
-        [NotMapped]
-        public List<float> lastScores {get;set;}
-        public List<Assignment> Assignments { get; set; }
         public IList<AssignmentSpecialization> AssignmentSpecializations { get; set; }
+
     }
 }
