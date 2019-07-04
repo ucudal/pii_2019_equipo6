@@ -1,5 +1,5 @@
 @page
-@model RazorPagesMovie.Pages.Projects.IndexModel
+@model RazorPagesMovie.Pages.FinishedProjects.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,9 +7,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -30,7 +27,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Project) {
-    if (item.Finished == false) {
+    @if (item.Finished == true){
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -45,10 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Creator)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Eliminar</a> |
-                <a asp-page="./Finish" asp-route-id="@item.ID">Finalizar</a>
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
     }

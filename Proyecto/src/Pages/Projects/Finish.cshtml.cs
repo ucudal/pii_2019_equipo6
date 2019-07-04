@@ -99,8 +99,7 @@ namespace RazorPagesMovie.Pages.Projects
 
             if (Project != null)
             {
-                _context.FinishedProject.Add(Project);
-                _context.Project.Remove(Project);
+                Project.Finished = true;
                 await _context.SaveChangesAsync();
             }
 

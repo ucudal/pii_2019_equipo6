@@ -41,7 +41,8 @@
         </tbody>
     </table>
     </form>
-
-
-
 }
+    <form method="post"asp-page-handler="Finish" asp-route-id="@Model.Project.ID">
+        <input type="hidden" asp-for="Project.ID" />
+        <input type="submit" value="Finalizar Proyecto" class="btn btn-success"> ¡Esta acción es PERMANENTE!
+    </form>

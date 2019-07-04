@@ -37,6 +37,7 @@ namespace RazorPagesMovie.Pages.Projects
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Project.Finished = false;
             if (!ModelState.IsValid)
             {
                 return Page();
