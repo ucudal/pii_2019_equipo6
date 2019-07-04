@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesMovie.Models
 {
+
+/* Creamos la clase Person para reutilizar código y que a partir de esta las clases sucesoras Technician y Client
+tengan estos atributos que son comunes a ellas */
     public class Person
     {
         public int ID { get; set; }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace RazorPagesMovie.Models
 {
+//Aqui aplicamos herencia, para reutilizar código de person hacemos que Technician sea un Person.
     public class Technician : Person
     {
         public float hours { get; set; }
