@@ -23,6 +23,27 @@ namespace RazorPagesMovie.Pages.Specializations
         public async Task OnGetAsync()
         {
             Specialization = await _context.Specialization.ToListAsync();
+            errorcheck();
+        }
+
+        private void errorcheck()
+        {
+            int num=0;
+            foreach(var i in Specialization)
+            {
+                foreach(var x in Specialization)
+                {
+                    if(x.Name==i.Name)
+                    {
+                        num+=1;
+                        if(num==2)
+                        {
+                            throw new ArgumentException("Especializacion","Ya existe");
+                        }
+                    }
+                }
+                num=0;
+            }
         }
     }
 }

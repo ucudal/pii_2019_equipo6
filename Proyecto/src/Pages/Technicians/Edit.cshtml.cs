@@ -44,6 +44,7 @@ namespace RazorPagesMovie.Pages.Technicians
             {
                 return NotFound();
             }
+            
             // Populate the list of actors in the viewmodel with the actors of the movie.
             this.Specializations = Technician.AssignmentSpecializations
                 .Select(a => a.Specialization);
@@ -61,6 +62,12 @@ namespace RazorPagesMovie.Pages.Technicians
                 .Where(a => !string.IsNullOrEmpty(nameFilter) ? a.Name.ToUpper().Contains(nameFilter) : true)
                 .ToListAsync();
             return Page();
+
+
+
+
+
+
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -70,5 +70,7 @@ namespace RazorPagesMovie.Pages.Specializations
         {
             return _context.Specialization.Any(e => e.ID == id);
         }
+
+        
     }
 }

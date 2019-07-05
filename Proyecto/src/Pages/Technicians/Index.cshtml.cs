@@ -23,6 +23,19 @@ namespace RazorPagesMovie.Pages.Technicians
         public async Task OnGetAsync()
         {
             Technician = await _context.Technician.ToListAsync();
+            ErrorChecker();
+        }
+
+        public void ErrorChecker()
+        {
+            foreach(var item in Technician)
+            {
+                if(item.hours<0)
+                {
+                    throw new ArgumentOutOfRangeException("Hours", "Is negative"); 
+                }
+
+            }
         }
     }
 }
