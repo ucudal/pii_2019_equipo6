@@ -2,6 +2,8 @@ using System;
 
 namespace RazorPagesMovie.Areas.Identity.Data
 {
+
+    //Clase que contiene los datos para el administrador del programa. 
     public static class IdentityData
     {
         public const string AdminUserName = "admin@contoso.com";

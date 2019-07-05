@@ -35,9 +35,14 @@ namespace RazorPagesMovie.Pages.Projects
             {
                 return Page();
             }
-            
+            //La precondicion es que el Project no sea nulo
+            Check.Precondition(Project != null);
+
             _context.Project.Add(Project);
             await _context.SaveChangesAsync();
+
+            // La postcondicion es que se haya agregado el project
+            Check.Postcondition(_context.Project.Contains(Project));
 
             return RedirectToPage("./Index");
         }

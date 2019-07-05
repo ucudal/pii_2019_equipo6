@@ -74,7 +74,7 @@ trabajar con las solicitudes http y tiene métodos que permiten especificar el t
 
                 //Por alguna razón el framework en algunos casos modifica el id del técnico a 1 en el
                 //TryUpdateModelAsync haciendo que crashee cuando va a gurdar los cambios, la siguiente
-                //linea puede parecer fuera de lugar pero es la solución que encontré.
+                //linea puede parecer fuera de lugar pero es la solución que encontramos.
                 ProjectToUpdate.ID = TechnicianToUpdateID;
             
                 ProjectToUpdate.hours = ProjectToUpdate.hours + param1;

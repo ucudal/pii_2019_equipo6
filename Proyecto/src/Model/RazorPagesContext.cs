@@ -5,6 +5,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Models
 {
+    //Tenemos un unico contexto para trabajar RazorPagesContext es nuestro contexto.
     public class RazorPagesContext : IdentityDbContext<ApplicationUser>
     {
         public RazorPagesContext (DbContextOptions<RazorPagesContext> options)

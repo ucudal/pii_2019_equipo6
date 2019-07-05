@@ -9,6 +9,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Specializations
 {
+    //IndexModel Hereda de PageModel por motivos que ya explicamos, vemos nuevamente herencia.
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Models.RazorPagesContext _context;
