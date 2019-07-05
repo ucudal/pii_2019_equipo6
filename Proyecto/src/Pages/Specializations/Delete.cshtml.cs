@@ -48,8 +48,14 @@ namespace RazorPagesMovie.Pages.Specializations
 
             if (Specialization != null)
             {
+                // La precondicion es que _context.Specialization contenga Specialization para poder eliminarla.
+                Check.Precondition(_context.Specialization.Contains(Specialization));
+
                 _context.Specialization.Remove(Specialization);
                 await _context.SaveChangesAsync();
+
+                // La postcondicion es que se haya eliminado la especialización
+                Check.Postcondition(_context.Specialization.Contains(Specialization)==false);
             }
 
             return RedirectToPage("./Index");

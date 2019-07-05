@@ -32,9 +32,14 @@ namespace RazorPagesMovie.Pages.Specializations
             {
                 return Page();
             }
-
+            //La precondicion es que el Project no sea nulo
+            Check.Precondition(Specialization != null);
+            
             _context.Specialization.Add(Specialization);
             await _context.SaveChangesAsync();
+
+            // La postcondicion es que contenga la especialización luego de agregada
+            Check.Postcondition(_context.Specialization.Contains(Specialization)==false);
 
             return RedirectToPage("./Index");
         }

@@ -53,8 +53,9 @@ namespace RazorPagesMovie.Pages.Projects
                 nameFilter = this.SearchString.ToUpper();
             }
 
-//Se incluyen los Technicians no incluidos 
-//Se agrega filtro por Technicians
+            //Se incluyen los Technicians no incluidos 
+            //Se agrega filtro por Technicians
+
             this.AllTechnicians = await _context.Technician
                 .Where(a =>!Technicians.Contains(a))
                 .Where(a => !string.IsNullOrEmpty(nameFilter) ? a.Name.ToUpper().Contains(nameFilter) : true)
@@ -103,6 +104,8 @@ namespace RazorPagesMovie.Pages.Projects
             if (technicianToDelete != null)
             {
                 ProjectToUpdate.Assignments.Remove(technicianToDelete);
+                // La postcondicion es que se haya eliminado el Project
+                Check.Postcondition(ProjectToUpdate.Assignments.Contains(technicianToDelete)==false);
             }
 
             try
@@ -124,6 +127,9 @@ namespace RazorPagesMovie.Pages.Projects
         }
         public async Task<IActionResult> OnPostAddTechnicianAsync(int? id, int? technicianToAddID)
         {
+        
+        //Se actualiza el project con technician
+
             Project projectToUpdate = await _context.Project
                 .Include(a => a.Assignments)
                     .ThenInclude(a => a.Technician)
@@ -142,7 +148,10 @@ namespace RazorPagesMovie.Pages.Projects
                         Technician = technicianToAdd,
                         ProjectID = projectToUpdate.ID,
                         Project = projectToUpdate };
+
                     projectToUpdate.Assignments.Add(assignmentToAdd);
+                    // La postcondicion es que el assignment este agregado
+                    Check.Postcondition(projectToUpdate.Assignments.Contains(assignmentToAdd));
                 }
             }
 

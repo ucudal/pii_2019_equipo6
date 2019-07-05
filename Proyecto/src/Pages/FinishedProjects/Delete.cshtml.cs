@@ -48,8 +48,13 @@ namespace RazorPagesMovie.Pages.FinishedProjects
 
             if (Project != null)
             {
+            // La precondicion es que _context.Project contenga Project para poder eliminarlo.
+                Check.Precondition(_context.Project.Contains(Project));
+
                 _context.Project.Remove(Project);
                 await _context.SaveChangesAsync();
+            // La postcondicion es que se haya eliminado el Project
+                Check.Postcondition(_context.Project.Contains(Project)==false);
             }
 
             return RedirectToPage("./Index");

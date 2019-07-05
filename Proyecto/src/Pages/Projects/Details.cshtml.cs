@@ -28,6 +28,8 @@ namespace RazorPagesMovie.Pages.Projects
             }
 
             Project = await _context.Project.FirstOrDefaultAsync(m => m.ID == id);
+            
+            // Si el Project es nulo devuelve que no lo encuentra
 
             if (Project == null)
             {

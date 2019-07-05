@@ -26,7 +26,7 @@ namespace RazorPagesMovie.Models
             {
                 return;   // DB has been seeded
             }
-             //chequeo que el context project no sea nulo
+             //como precondición chequeo que el context project no sea nulo
             Check.Precondition (context.Project != null);
             context.Project.AddRange(GetSeedingProjects());
             context.SaveChanges();

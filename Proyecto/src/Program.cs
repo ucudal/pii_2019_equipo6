@@ -9,6 +9,12 @@ using RazorPagesMovie.Areas.Identity.Data;
 
 namespace RazorPagesMovie
 {
+
+/* En nuestro programa contamos con bajo acoplamiento, hay baja dependencia reutilizamos codigo para esto.
+Tenemos también alta cohesión, asignamos las responsabilidades de forma tal que esto se cumpla.*/
+
+/* Se cumple ISP, va de la mano del bajo acoplamiento. No se depende de interfaces que no se usan */
+
     public class Program
     {
         public static void Main(string[] args)
